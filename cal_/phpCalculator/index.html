@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+            integrity="sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer">
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator input[type="text"] {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 24px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;  
+        }
+
+        .calculator input[type="button"] {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            padding: 10px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;  
+            vertical-align: top;  
+        }
+
+        .calculator input[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+
+         
+       
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="answer">
+        <div>
+            <input type="button" value="AC" onclick="clear_input()">
+            
+        </div>
+        <div>
+            <input type="button" value="7" onclick="res('7')">
+            <input type="button" value="8" onclick="res('8')">
+            <input type="button" value="9" onclick="res('9')">
+            <input type="button" value="/" onclick="res('/')">
+        </div>
+        <div>
+            <input type="button" value="4" onclick="res('4')">
+            <input type="button" value="5" onclick="res('5')">
+            <input type="button" value="6" onclick="res('6')">
+            <input type="button" value="*" onclick="res('*')">
+        </div>
+        <div>
+            <input type="button" value="1" onclick="res('1')">
+            <input type="button" value="2" onclick="res('2')">
+            <input type="button" value="3" onclick="res('3')">
+            <input type="button" value="-" onclick="res('-')">
+        </div>
+        <div> 
+            <input type="button" value="0" onclick="res('0')">
+            <input type="button" value="." onclick="res('.')">
+            <input type="button" class="equal-button" value="=" onclick="calculate()">
+            <input type="button" value="+" onclick="res('+')">
+        </div>
+    </div>
+
+    <script>
+        function res(val) {
+            document.getElementById("answer").value += val;
+        }
+
+        function clearfield() {
+            let st = document.getElementById("answer").value;
+            document.getElementById("answer").value = st.substring(0, st.length - 1);
+        }
+
+        function calculate() {
+            let a = document.getElementById("answer").value;
+            try {
+                let b = math.evaluate(a);
+                document.getElementById("answer").value = b;
+            } catch (error) {
+                alert("Invalid expression");
+            }
+        }
+
+        function clear_input() {
+            document.getElementById("answer").value = '';
+        }
+    </script>
+</body>
+</html>
